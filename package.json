@@ -4,14 +4,14 @@
   "description": "create openai project",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ujjal-ENG/chatgpt-my-version.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ujjal Kumar Roy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ujjal-ENG/chatgpt-my-version/issues"
@@ -22,7 +22,6 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20",
     "openai": "^3.1.0"
   }
 }

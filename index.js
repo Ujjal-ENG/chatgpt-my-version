@@ -1,8 +1,14 @@
 const { Configuration, OpenAIApi } = require("openai");
 const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
 const PORT = process.env.PORT || 3001;
+
 const configuration = new Configuration({
   organization: "org-C5ibwSkQWKMBHLhEAhBMNGQf",
   apiKey: "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",
@@ -12,16 +18,21 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 app.post("/", async (req, res) => {
+  const { message } = req.body;
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: "Say this is a test",
-    max_tokens: 3000,
-    temperature: 0,
+    prompt: `${message}`,
+    max_tokens: 100,
+    temperature: 0.5,
   });
-  console.log(response.data.choices[0].text);
+
   res.json({
-    data: response.data,
+    message: response.data.choices[0].text,
   });
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello Ujjal");
 });
 
 app.listen(PORT, () => {
